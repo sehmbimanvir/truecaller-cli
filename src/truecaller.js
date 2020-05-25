@@ -58,9 +58,7 @@ const truecaller = {
     }
   },
 
-  validateNumber: mobile => {
-    return /^\d{10}$/.test(mobile)
-  },
+  
 
   verifyOtp: (mobile, requestId, token) => {
     const postData = {

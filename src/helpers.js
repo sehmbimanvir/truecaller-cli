@@ -52,6 +52,9 @@ const helpers = {
   getOSVersion () {
     const osVersion = helpers.getRandomNumber(7, 10)
     return osVersion.toFixed(1)
+  },
+  validateNumber (mobile) {
+    return /^\d{10}$/.test(mobile)
   }
 }
 

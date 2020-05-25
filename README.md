@@ -6,9 +6,9 @@ A command line utility to search mobile number details
 ```npm install sehmbimanvir/truecaller-cli```
 
 * For Registring a Number
-```truecaller -r 10_DIGIT_MOBILE_NUMBER```
+```truecaller register 10_DIGIT_MOBILE_NUMBER```
 
 * For Searching a mobile number
-```truecaller -s 10_DIGIT_MOBILE_NUMBER```
+```truecaller search 10_DIGIT_MOBILE_NUMBER```
 
 Enjoy :-)

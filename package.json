@@ -1,0 +1,22 @@
+{
+  "name": "truecaller-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "bin": {
+    "truecaller": "./bin/app.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "chalk": "^4.0.0",
+    "inquirer": "^7.1.0",
+    "node-fetch": "^2.6.0",
+    "yargs": "^13.2.4"
+  }
+}

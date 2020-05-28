@@ -50,6 +50,10 @@ const registerNumber = async ({ number }) => {
 const searchNumber = async ({ number }) => {
   try {
     const result = await truecaller.searchNumber(number)
+    if (!result.name && !result.email) {
+      logError('Not Found.')
+      return false
+    }
     let resultString = `Name: ${result.name}`
     resultString += result.email ? `\nEmail: ${result.email}` : ''
     logInfo(resultString)

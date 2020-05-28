@@ -17,6 +17,7 @@ const axiosInstance = axios.create({
 const { generateRandomString, getModelAndManufacturer, getOSVersion } = helpers
 
 const truecaller = {
+  installationId: null,
   sendOtp: mobile => {
     const deviceData = truecaller.generateDeviceData(mobile)
     return axiosInstance.post(`https://account-asia-south1.truecaller.com/v2/sendOnboardingOtp`, deviceData)
@@ -100,11 +101,14 @@ const truecaller = {
     return JSON.parse(data).installationId
   },
 
-  searchNumber: mobile => {
-    const installationId = truecaller.getInstallationId()
+  setInstallationId: id => {
+    truecaller.installationId = id
+  },
+
+  searchNumber: q => {
     return axiosInstance.get(`https://search5-noneu.truecaller.com/v2/search`, {
       params: {
-        q: mobile,
+        q,
         countryCode: 'IN',
         type: 4,
         locAddr: '',
@@ -112,7 +116,7 @@ const truecaller = {
         encoding: 'json'
       },
       headers: {
-        Authorization: `Bearer ${installationId}`
+        Authorization: `Bearer ${truecaller.installationId}`
       }
     })
     .then(response => {
@@ -120,7 +124,7 @@ const truecaller = {
     }, err => err.response.data)
   },
 
-  setInstallationId: (installationId) => {
+  saveInstallationId: (installationId) => {
     const data = { installationId }
     fs.writeFileSync(configFilePath, JSON.stringify(data))
   }

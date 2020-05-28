@@ -40,7 +40,7 @@ const registerNumber = async ({ number }) => {
     }
     logInfo(`Your Installation ID is: ${installationId}`)
 
-    truecaller.setInstallationId(installationId)
+    truecaller.saveInstallationId(installationId)
     logInfo('Installation Id saved to config.json')
   } catch (err) {
     logError(err)
@@ -60,7 +60,17 @@ const searchNumber = async ({ number }) => {
 
 yargs.usage('Usage: truecaller <command> [options]')
   .command('register [number]', 'Register a New Number', yargs => yargs, registerNumber)
-  .command('search [number]', 'Search a Mobile Number', yargs => yargs, searchNumber)
+  .command('search [number]', 'Search a Mobile Number', yargs => {
+    try {
+      const installationId = truecaller.getInstallationId()
+      truecaller.setInstallationId(installationId)
+      return yargs
+    } catch (err) {
+      logError('Installtion Id not found, Please run the following command to register.')
+      logInfo('```truecaller register 10_DIGIT_NUMBER```')
+      process.exit()
+    }
+  }, searchNumber)
   .demandCommand()
   .middleware(({ number }) => {
     if (!validateNumber(number)) {

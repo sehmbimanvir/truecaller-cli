@@ -4,7 +4,7 @@ A command line utility to search mobile number details
 **How to use ?**
 * Install this package globally
 
-```npm install sehmbimanvir/truecaller-cli```
+```npm install -g sehmbimanvir/truecaller-cli```
 
 * For Registring a Number
 
